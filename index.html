@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishav Verma | MAIN_CHARACTER_ENERGY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- THE VIBE SETTINGS --- */
+        :root {
+            --bg: #f0f0f0;
+            --paper: #ffffff;
+            --ink: #121212;
+            --neon-blue: #4d4dff;
+            --acid-green: #ccff00;
+            --alert-pink: #ff00ff;
+            --border-thick: 4px solid var(--ink);
+            --border-thin: 2px solid var(--ink);
+            --shadow-hard: 8px 8px 0px 0px var(--ink);
+            --font-head: 'Space Grotesk', sans-serif;
+            --font-code: 'Chakra Petch', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            cursor: crosshair; /* Gamer/Dev vibes */
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg);
+            background-image: radial-gradient(var(--ink) 1px, transparent 0);
+            background-size: 30px 30px;
+            font-family: var(--font-code);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: var(--paper);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-hard);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.1s;
+        }
+
+        .box:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 12px 12px 0px 0px var(--ink);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .badge {
+            background: var(--ink);
+            color: var(--acid-green);
+            padding: 5px 10px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+            transform: skew(-10deg);
+        }
+
+        /* --- HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: var(--border-thick);
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            background: var(--neon-blue);
+            color: white;
+            padding: 0.5rem;
+            font-family: var(--font-head);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            background: var(--acid-green);
+            display: inline-block;
+            padding: 0.5rem;
+            border: var(--border-thin);
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* THE IMAGE WRAPPER - POLAROID STYLE */
+        .img-wrapper {
+            background: white;
+            padding: 15px 15px 50px 15px;
+            border: var(--border-thick);
+            transform: rotate(3deg);
+            box-shadow: var(--shadow-hard);
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: auto;
+            border: var(--border-thin);
+            filter: grayscale(100%) contrast(120%);
+            transition: 0.3s;
+        }
+
+        .img-wrapper:hover img {
+            filter: none;
+        }
+
+        .img-caption {
+            font-family: 'Marker Felt', fantasy, sans-serif; /* Fallback to something sketchy */
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.5rem;
+            transform: rotate(-5deg);
+            color: var(--neon-blue);
+        }
+
+        /* --- SCROLLING MARQUEE --- */
+        .marquee {
+            background: var(--ink);
+            color: var(--acid-green);
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: var(--border-thick);
+            border-bottom: var(--border-thick);
+            margin: 2rem 0;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* --- GRID BENTO BOX --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bento-item {
+            background: var(--paper);
+            border: var(--border-thick);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
+        }
+
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* --- TECH STACK --- */
+        .tech-tag {
+            display: inline-block;
+            border: 2px solid var(--ink);
+            padding: 5px 10px;
+            margin: 3px;
+            font-weight: bold;
+            transition: 0.2s;
+            background: white;
+        }
+        
+        .tech-tag:hover {
+            background: var(--neon-blue);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        /* --- CAT ZONE --- */
+        .cat-zone {
+            background: var(--alert-pink);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cat-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 3px solid white;
+            border-radius: 50%;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .cat-img:hover { transform: scale(1.2) rotate(10deg); }
+
+        /* --- SOCIALS --- */
+        .social-btn {
+            display: block;
+            background: var(--ink);
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        .social-btn:hover {
+            background: var(--acid-green);
+            color: var(--ink);
+            box-shadow: 5px 5px 0 var(--neon-blue);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .img-wrapper { transform: rotate(0deg); max-width: 300px; margin: 0 auto; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            h1 { font-size: 3.5rem; }
+        }
+
+        /* Glitch Animation */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .glitch:hover { animation: glitch 0.3s infinite; color: var(--neon-blue); }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">RV_STATION</div>
+            <div style="font-weight: bold;">STATUS: <span style="background:var(--acid-green); padding:2px 5px;">STUDENT</span></div>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-text">
+                <div class="badge">SARALA BIRLA UNIVERSITY</div>
+                <h1 class="glitch">RISHAV<br>VERMA</h1>
+                <p>// WEBTOON EDITOR // FULL STACK WIZARD</p>
+                <div style="margin-top: 2rem; font-size: 1.1rem; line-height: 1.6;">
+                    I don't just write code; I create problems and then solve them with 
+                    <b>GenAI</b>. Currently studying, coding, and editing webtoons.
+                    <br><br>
+                    <span style="background: var(--ink); color: white; padding: 5px;">NOT FOR HIRE. JUST FLEXING.</span>
+                </div>
+            </div>
+
+            <div class="img-wrapper">
+                <img src="https://media.discordapp.net/attachments/673412844561104927/1441150565328490567/wmremove-transformed_3.png?ex=6920bf8e&is=691f6e0e&hm=14e37fa620708878504e3177282f01442b8be30b542aae18bca7df00d885d960&=&format=webp&quality=lossless&width=749&height=930" alt="Rishav Verma">
+                <div class="img-caption">Built Different 😤</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scrolling Marquee -->
+    <div class="marquee">
+        <marquee scrollamount="12">
+            REACT ☠️ TYPESCRIPT ☠️ PYTHON ☠️ C LANGUAGE ☠️ BUN ☠️ GEN_AI ENGINEER ☠️ I LIKE CATS 🐈 DRIZZLE ORM ☠️ CLOUDFLARE ☠️ SLEEP IS FOR THE WEAK ☠️
+        </marquee>
+    </div>
+
+    <div class="container">
+        <div class="bento-grid">
+            
+            <!-- Tech Flex -->
+            <div class="bento-item span-2 box">
+                <h2>THE ARSENAL 🛠️</h2>
+                <p style="margin-bottom: 1rem; opacity: 0.7;">Things I use to break the internet:</p>
+                <div>
+                    <div style="margin-bottom: 10px; font-weight:bold;">GOD TIER:</div>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Tailwind</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Bun</span>
+                    
+                    <div style="margin-top: 15px; margin-bottom: 10px; font-weight:bold;">BRAIN POWER:</div>
+                    <span class="tech-tag" style="background:var(--acid-green);">GenAI</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">C</span>
+                    <span class="tech-tag">Prisma</span>
+                    <span class="tech-tag">Drizzle</span>
+                    <span class="tech-tag">Cloudflare</span>
+                </div>
+            </div>
+
+            <!-- Stats / About -->
+            <div class="bento-item box" style="background: var(--ink); color: var(--paper);">
+                <h2 style="color: var(--acid-green);">STATS 📊</h2>
+                <ul style="list-style: none; padding: 0; font-size: 1.2rem; line-height: 2;">
+                    <li>🎓 <span style="float: right;">CSE Student</span></li>
+                    <li>💼 <span style="float: right;">WebToon Intern</span></li>
+                    <li>☕ <span style="float: right;">Addicted</span></li>
+                    <li>🐈 <span style="float: right;">Cat Lover</span></li>
+                </ul>
+            </div>
+
+            <!-- The Cat Break -->
+            <div class="bento-item span-3 box cat-zone">
+                <h2 style="text-shadow: 3px 3px 0 var(--ink);">MANDATORY CAT BREAK 🐈</h2>
+                <p>My code works because they supervise me.</p>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                    <!-- Using cute cat placeholders -->
+                    <img src="https://cataas.com/cat/cute" class="cat-img" alt="Cat">
+                    <img src="https://cataas.com/cat/angry" class="cat-img" alt="Angry Cat">
+                    <img src="https://cataas.com/cat/funny" class="cat-img" alt="Funny Cat">
+                </div>
+            </div>
+
+            <!-- Webtoon Exp -->
+            <div class="bento-item span-2 box">
+                <h2>WEBTOON ARC 📖</h2>
+                <div style="background: #eee; padding: 10px; border-left: 5px solid var(--neon-blue); margin-top: 10px;">
+                    <p><strong>Role:</strong> Intern / Editor</p>
+                    <p>Making sure your favorite comics look crisp. I handle the edits, the flow, and the vibes.</p>
+                </div>
+            </div>
+
+            <!-- Socials -->
+            <div class="bento-item box">
+                <h2>STALK ME 🕵️</h2>
+                <a href="#" class="social-btn">LINKEDIN</a>
+                <a href="#" class="social-btn">GITHUB</a>
+                <a href="#" class="social-btn">INSTAGRAM</a>
+                <a href="#" class="social-btn">THREADS</a>
+                <a href="#" class="social-btn">X / TWITTER</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem; font-family: var(--font-code); opacity: 0.6;">
+        <p>MADE BY RISHAV VERMA // NO TEMPLATES // PURE CHAOS</p>
+        <p id="joke">Loading Dad Joke...</p>
+    </footer>
+
+    <script>
+        // Console Flex
+        console.log("%c RISHAV VERMA ", "color: #ccff00; background: black; font-size: 20px; padding: 10px; border: 2px solid #ccff00;");
+        console.log("Why are you looking at my console? Want to see the errors? Too bad, I hid them.");
+
+        // Joke Fetcher
+        fetch('https://icanhazdadjoke.com/', {
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('joke').innerText = data.joke;
+        })
+        .catch(err => {
+            document.getElementById('joke').innerText = "Why do cats sit on keyboards? Because they like to keep an eye on the mouse.";
+        });
+    </script>
+
+</body>
+</html>
